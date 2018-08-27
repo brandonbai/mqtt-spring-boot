@@ -13,7 +13,7 @@ public class MqttController {
     private MqttService mqttService;
 
     @RequestMapping("/send")
-    public String sendMessgae(String topic, String content) {
+    public String sendMessage(String topic, String content) {
 
         mqttService.send(topic, content);
 
