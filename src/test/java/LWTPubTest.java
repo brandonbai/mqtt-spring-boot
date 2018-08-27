@@ -27,7 +27,7 @@ public class LWTPubTest {
             // 设置连接的用户名
             connOpts.setUserName(userName);
             connOpts.setPassword(password.toCharArray());
-            connOpts.setWill(topic, "i`m gone".getBytes(), 2, true);
+            connOpts.setWill(topic, "i`m gone".getBytes(), qos, true);
             // 建立连接
             sampleClient.connect(connOpts);
             // 创建消息
