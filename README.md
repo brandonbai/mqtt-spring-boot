@@ -12,7 +12,8 @@
 496		throw new MqttException(MqttException.REASON_CODE_MAX_INFLIGHT);
 497	}
 ```
-原来默认的处 __飞行__ 状态的消息数量有限制，默认为10
+原来默认的处于 __飞行__ 状态的消息数量有限制，默认为10。
+__飞行_ 状态表述为: 未被ack的消息，由此可见，qos=1或2时可能会出现此问题。
 
 -------
 
