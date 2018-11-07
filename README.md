@@ -1,5 +1,19 @@
 # spring-mqtt-demo
 
+## 重要
+
+- 当消息发布并发过高时，报错: 32202，详见`org.eclipse.paho.client.mqttv3.internal.ClientState#ClientState`:
+
+```Java
+492				if (actualInFlight >= this.maxInflight) {
+493					//@TRACE 613= sending {0} msgs at max inflight window
+494					log.fine(CLASS_NAME, methodName, "613", new Object[]{new Integer(actualInFlight)});
+495
+496					throw new MqttException(MqttException.REASON_CODE_MAX_INFLIGHT);
+497				}
+```
+原来默认的处 __飞行__ 状态的消息数量有限制，默认为10
+
 Spring Integration基于[Eclipse Paho MQTT客户端](https://www.eclipse.org/paho/)库提供了支持MQTT协议的所谓入站和出站通道适配器。但是使用起来不是很灵活(有可能是没有深入理解😂)。在参考了[这篇文章](https://blog.csdn.net/zhang89xiao/article/details/51871973)后有了如下实现：
 
 #### 1. maven依赖
