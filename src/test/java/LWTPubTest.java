@@ -7,12 +7,14 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class LWTPubTest {
 
     public static void main(String[] args) {
-        String topic = "mqtt/hao/test";
-        String content = "hello 哈哈";
+
+        String broker = "tcp://192.168.85.136:1883";//"tcp://iot.eclipse.org:1883";
+        String userName = "lilei";
+        String password = "root";
+
+        String topic = "test/test";
+        String content = "hello mqtt";
         int qos = 1;
-        String broker = "tcp://iot.eclipse.org:1883";
-        String userName = "test";
-        String password = "test";
         String clientId = "pubClient1";
         // 内存存储
         MemoryPersistence persistence = new MemoryPersistence();
@@ -23,7 +25,7 @@ public class LWTPubTest {
             // 创建链接参数
             MqttConnectOptions connOpts = new MqttConnectOptions();
             // 在重新启动和重新连接时记住状态
-            connOpts.setCleanSession(false);
+            connOpts.setCleanSession(true);
             // 设置连接的用户名
             connOpts.setUserName(userName);
             connOpts.setPassword(password.toCharArray());
@@ -32,15 +34,16 @@ public class LWTPubTest {
             sampleClient.connect(connOpts);
             // 创建消息
             MqttMessage message = new MqttMessage(content.getBytes());
+            message.setRetained(false);
             // 设置消息的服务质量
             message.setQos(qos);
             // 发布消息
             sampleClient.publish(topic, message);
-//            // 断开连接
-            sampleClient.disconnect();
+            // 断开连接
+           // sampleClient.disconnect();
             // 关闭客户端
-            sampleClient.close();
-            System.exit(0);
+           // sampleClient.close();
+            System.exit(1);
         } catch (MqttException me) {
             System.out.println("reason " + me.getReasonCode());
             System.out.println("msg " + me.getMessage());
