@@ -1,0 +1,3 @@
+# auto config
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.brandonbai.mqtt.MqttAutoConfiguration

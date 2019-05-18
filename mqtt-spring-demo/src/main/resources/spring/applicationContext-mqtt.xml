@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="clientFactory"
+          class="org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory">
+        <property name="userName" value="${mqtt.username}"/>
+        <property name="password" value="${mqtt.password}"/>
+        <property name="cleanSession" value="${mqtt.cleanSession}"/>
+        <property name="keepAliveInterval" value="${mqtt.keepAliveInterval}"/>
+        <property name="serverURIs">
+            <array>
+                <value>${mqtt.serverURI1}</value>
+            </array>
+        </property>
+    </bean>
+
+    <!-- 发布 -->
+    <bean id="mqttHandler" class="org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler">
+        <constructor-arg name="clientId" value="${mqtt.clientId}"/>
+        <constructor-arg name="clientFactory" ref="clientFactory"/>
+        <property name="async" value="${mqtt.async}"/>
+        <property name="defaultQos" value="${mqtt.defaultQos}"/>
+        <property name="completionTimeout" value="${mqtt.completionTimeout}"/>
+    </bean>
+    <!-- 订阅 -->
+    <bean id="mqttAdapter" class="com.github.brandonbai.springmqttdemo.mqtt.MqttSubscriber">
+        <constructor-arg name="clientId" value="${mqtt.clientId}"/>
+        <constructor-arg name="clientFactory" ref="clientFactory"/>
+        <constructor-arg name="topic" value="${mqtt.subscribes}"/>
+    </bean>
+
+</beans>
