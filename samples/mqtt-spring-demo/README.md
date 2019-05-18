@@ -20,7 +20,7 @@ __飞行__ 状态表述为: 未被ack的消息。
 -------
 
 ## 介绍
-[SpringBoot 配置点这里](https://github.com/brandonbai/spring-mqtt-demo/tree/springboot)
+[SpringBoot 配置点这里](../../../..)
 
 ## 介绍
 Spring Integration基于[Eclipse Paho MQTT客户端](https://www.eclipse.org/paho/)库提供了支持MQTT协议的所谓入站和出站通道适配器。但是使用起来不是很灵活(有可能是没有深入理解😂)。在参考了[这篇文章](https://blog.csdn.net/zhang89xiao/article/details/51871973)后有了如下实现：
