@@ -7,6 +7,7 @@ mqtt-spring-boot-starter will help you use mqtt with Spring Boot.
 
 - [Maven](#maven)
 - [Configuration](#configuration)
+- [Use](#use)
 - [Samples](#samples)
 
 ## Maven
@@ -33,6 +34,20 @@ mqtt:
   clientId: mqttPubClient
   defaultQos: 1
 ```
+
+## Use
+
+```java
+public class YourClass {
+  @Resource
+  private MqttMessageClient mqttMessageClient;
+
+  public void yourMethod() {
+    mqttMessageClient.sendMessage("topic", "content");
+  }
+}
+```
+
 ## Samples
 
 - [Mqtt + SpringMvc + Spring](./samples/mqtt-spring-demo)
