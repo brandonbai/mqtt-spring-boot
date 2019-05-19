@@ -27,7 +27,8 @@ mqtt:
   username: mqttPubClient
   password: 123456
   cleanSession: false
-  serverURIs: tcp://localhost:1883
+  serverURIs: 
+   - tcp://localhost:1883
   async: true
   completionTimeout: 20000
   keepAliveInterval: 30
