@@ -54,4 +54,4 @@ public class YourClass {
 
 - [mqtt + Spring Boot](./samples/mqtt-spring-boot-sample)
 
-- [mqtt-spring-boot-starter]() // todo
+- [mqtt-spring-boot-starter](./samples/mqtt-spring-boot-starter-sample/)
