@@ -50,8 +50,8 @@ public class YourClass {
 
 ## Samples
 
-- [Mqtt + SpringMvc + Spring](./samples/mqtt-spring-demo)
+- [Mqtt + SpringMvc + Spring](./samples/mqtt-spring-sample)
 
-- [mqtt + Spring Boot]() // todo
+- [mqtt + Spring Boot](./samples/mqtt-spring-boot-sample)
 
 - [mqtt-spring-boot-starter]() // todo
