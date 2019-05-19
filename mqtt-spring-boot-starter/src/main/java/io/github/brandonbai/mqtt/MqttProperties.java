@@ -14,7 +14,7 @@ public class MqttProperties {
     //是否清除会话
     private Boolean cleanSession = false;
     //服务端url
-    private String serverURI1 = "tcp://localhost:1883";
+    private String[] serverURIs = {"tcp://localhost:1883"};
     //是否异步发送
     private Boolean async = true;
     //超时时间

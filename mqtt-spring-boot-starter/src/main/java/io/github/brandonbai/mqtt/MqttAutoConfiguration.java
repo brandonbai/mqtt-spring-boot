@@ -1,6 +1,6 @@
 package io.github.brandonbai.mqtt;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,6 @@ import javax.annotation.Resource;
  * mqtt auto configuration
  */
 @Configuration
-@ConditionalOnProperty(prefix = "mqtt")
 @EnableConfigurationProperties(MqttProperties.class)
 public class MqttAutoConfiguration {
 
@@ -22,12 +21,15 @@ public class MqttAutoConfiguration {
     @Bean
     public DefaultMqttPahoClientFactory clientFactory() {
 
+        MqttConnectOptions connectOptions = new MqttConnectOptions();
+        connectOptions.setPassword(mqttProperties.getUsername().toCharArray());
+        connectOptions.setUserName(mqttProperties.getPassword());
+        connectOptions.setCleanSession(mqttProperties.getCleanSession());
+        connectOptions.setKeepAliveInterval(mqttProperties.getKeepAliveInterval());
+        connectOptions.setServerURIs(mqttProperties.getServerURIs());
+
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
-        factory.setPassword(mqttProperties.getUsername());
-        factory.setUserName(mqttProperties.getPassword());
-        factory.setCleanSession(mqttProperties.getCleanSession());
-        factory.setKeepAliveInterval(mqttProperties.getKeepAliveInterval());
-        factory.setServerURIs(mqttProperties.getServerURI1());
+        factory.setConnectionOptions(connectOptions);
 
         return factory;
     }
