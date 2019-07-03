@@ -22,8 +22,8 @@ public class MqttAutoConfiguration {
     public DefaultMqttPahoClientFactory clientFactory() {
 
         MqttConnectOptions connectOptions = new MqttConnectOptions();
-        connectOptions.setPassword(mqttProperties.getUsername().toCharArray());
-        connectOptions.setUserName(mqttProperties.getPassword());
+        connectOptions.setPassword(mqttProperties.getPassword());
+        connectOptions.setUserName(mqttProperties.getUsername().toCharArray());
         connectOptions.setCleanSession(mqttProperties.getCleanSession());
         connectOptions.setKeepAliveInterval(mqttProperties.getKeepAliveInterval());
         connectOptions.setServerURIs(mqttProperties.getServerURIs());
