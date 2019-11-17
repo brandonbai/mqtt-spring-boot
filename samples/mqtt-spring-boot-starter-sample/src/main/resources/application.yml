@@ -1,3 +1,0 @@
-mqtt:
-  serverURIs:
-    - tcp://iot.eclipse.org:1883
